@@ -9,14 +9,10 @@
     "start": "node --env-file=.env dist/index.mjs",
     "dev": "ts-node --env-file=.env --esm src/index.mts",
     "dev:native": "node --env-file=.env --enable-source-maps --loader ts-node/esm src/index.mts",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "format": "biome format --write ."
   },
-  "keywords": [
-    "github",
-    "actions",
-    "workflow",
-    "mcp"
-  ],
+  "keywords": ["github", "actions", "workflow", "mcp"],
   "author": "Mikalai Sokarau",
   "license": "MIT",
   "engines": {
@@ -25,6 +21,7 @@
   },
   "packageManager": "pnpm@10.11.0",
   "devDependencies": {
+    "@biomejs/biome": "^1.9.4",
     "@octokit/types": "^14.1.0",
     "@types/node": "^22.0.0",
     "ts-node": "^10.9.2",
