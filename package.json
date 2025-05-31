@@ -1,0 +1,32 @@
+{
+  "name": "github-actions-mcp-server",
+  "version": "1.0.0",
+  "description": "github actions mcp server",
+  "main": "dist/index.mjs",
+  "type": "module",
+  "scripts": {
+    "build": "tsc",
+    "start": "node --env-file=.env dist/index.mjs",
+    "dev": "ts-node --env-file=.env --esm src/index.mts",
+    "dev:native": "node --env-file=.env --enable-source-maps --loader ts-node/esm src/index.mts",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "github",
+    "actions",
+    "workflow",
+    "mcp"
+  ],
+  "author": "Mikalai Sokarau",
+  "license": "MIT",
+  "engines": {
+    "node": ">=22.0.0",
+    "pnpm": ">=9.0.0"
+  },
+  "packageManager": "pnpm@10.11.0",
+  "devDependencies": {
+    "@types/node": "^22.0.0",
+    "ts-node": "^10.9.2",
+    "typescript": "^5.4.5"
+  }
+}
