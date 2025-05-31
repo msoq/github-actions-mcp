@@ -2,13 +2,12 @@
   "name": "github-actions-mcp-server",
   "version": "1.0.0",
   "description": "github actions mcp server",
-  "main": "dist/index.mjs",
+  "main": "dist/main.js",
   "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node --env-file=.env dist/index.mjs",
-    "dev": "ts-node --env-file=.env --esm src/index.mts",
-    "dev:native": "node --env-file=.env --enable-source-maps --loader ts-node/esm src/index.mts",
+    "start": "node --env-file=.env dist/main.js",
+    "dev": "tsx --env-file=.env src/main.ts",
     "test": "echo \"Error: no test specified\" && exit 1",
     "format": "biome format --write ."
   },
@@ -24,7 +23,7 @@
     "@biomejs/biome": "^1.9.4",
     "@octokit/types": "^14.1.0",
     "@types/node": "^22.0.0",
-    "ts-node": "^10.9.2",
+    "tsx": "^4.17.0",
     "typescript": "^5.4.5"
   }
 }
