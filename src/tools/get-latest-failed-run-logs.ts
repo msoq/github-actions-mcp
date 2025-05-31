@@ -3,7 +3,7 @@ import { getErrorsFromLogs, getLatestFailedJob } from '../utils/index.js';
 
 export const getLatestFailedRunLogs = [
   'get_latest_failed_run_logs',
-  'get the latest failed run logs from the gitHub actions api',
+  'get the latest failed run logs from the github actions api',
   async () => {
     try {
       const latestFailedRun = await getRun(
