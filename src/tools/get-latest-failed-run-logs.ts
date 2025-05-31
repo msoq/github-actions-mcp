@@ -1,10 +1,7 @@
-import { getJobLogs } from '../api/get-job-logs.js';
-import { getJobs } from '../api/get-jobs.js';
-import { getRun } from '../api/get-run.js';
-import { getErrorsFromLogs } from '../utils/get-errors-from-logs.js';
-import { getLatestFailedJob } from '../utils/get-latest-failed-job.js';
+import { getJobLogs, getJobs, getRun } from '../api/index.js';
+import { getErrorsFromLogs, getLatestFailedJob } from '../utils/index.js';
 
-export const getLatestFailedJobTool = [
+export const getLatestFailedRunLogs = [
   'get_latest_failed_run_logs',
   'get the latest failed run logs from the gitHub actions api',
   async () => {
