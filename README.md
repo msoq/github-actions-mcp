@@ -11,9 +11,7 @@ A Model Context Protocol (MCP) server that provides tools for analyzing GitHub A
       "command": "npx",
       "args": ["-y", "github-actions-mcp"],
       "env": {
-        "GITHUB_TOKEN": "personal access token with repository read access",
-        "GITHUB_OWNER": "repository owner/organization",
-        "GITHUB_REPO": "repository name"
+        "GITHUB_TOKEN": "personal access token with repository read access"
       }
     }
   }

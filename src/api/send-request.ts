@@ -1,10 +1,8 @@
 const GITHUB_TOKEN = process.env.GITHUB_TOKEN;
-const OWNER = process.env.GITHUB_OWNER;
-const REPO = process.env.GITHUB_REPO;
 
-export async function sendRequest(url: string) {
+export async function sendRequest(url: string, owner: string, repo: string) {
   const response = await fetch(
-    `https://api.github.com/repos/${OWNER}/${REPO}${url}`,
+    `https://api.github.com/repos/${owner}/${repo}${url}`,
     {
       headers: {
         Authorization: `token ${GITHUB_TOKEN}`,
@@ -21,8 +19,12 @@ export async function sendRequest(url: string) {
   return response;
 }
 
-export async function sendRequestJson<T>(url: string) {
-  const response = await sendRequest(url);
+export async function sendRequestJson<T>(
+  url: string,
+  owner: string,
+  repo: string
+) {
+  const response = await sendRequest(url, owner, repo);
   const data = await response.json();
 
   return data as T;

@@ -4,9 +4,11 @@ import { sendRequestJson } from './send-request.js';
 type WorkflowRunsResponse =
   Endpoints['GET /repos/{owner}/{repo}/actions/runs']['response']['data'];
 
-export async function getRun(query = '') {
+export async function getRun(owner: string, repo: string, query = '') {
   const response = await sendRequestJson<WorkflowRunsResponse>(
-    `/actions/runs${query}`
+    `/actions/runs${query}`,
+    owner,
+    repo
   );
   const run = response.workflow_runs?.[0];
 
