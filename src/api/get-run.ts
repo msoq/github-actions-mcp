@@ -1,20 +1,17 @@
-import type { Endpoints } from '@octokit/types';
-import { sendRequestJson } from './send-request.js';
+import { octokit } from './client.js';
 
-type WorkflowRunsResponse =
-  Endpoints['GET /repos/{owner}/{repo}/actions/runs']['response']['data'];
-
-export async function getRun(owner: string, repo: string, query = '') {
-  const response = await sendRequestJson<WorkflowRunsResponse>(
-    `/actions/runs${query}`,
+export async function getRun(owner: string, repo: string) {
+  const response = await octokit.rest.actions.listWorkflowRunsForRepo({
     owner,
-    repo
-  );
-  const run = response.workflow_runs?.[0];
+    repo,
+    status: 'failure',
+    per_page: 1,
+  });
+  const failedRun = response.data.workflow_runs?.[0];
 
-  if (!run) {
-    throw new Error('No workflow run found.');
+  if (!failedRun) {
+    throw new Error('No failedworkflow run found.');
   }
 
-  return run;
+  return failedRun;
 }

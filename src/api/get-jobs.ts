@@ -1,15 +1,11 @@
-import type { Endpoints } from '@octokit/types';
-import { sendRequestJson } from './send-request.js';
+import { octokit } from './client.js';
 
-type JobsResponse =
-  Endpoints['GET /repos/{owner}/{repo}/actions/runs/{run_id}/jobs']['response']['data'];
-
-export async function getJobs(runId: number, owner: string, repo: string) {
-  const response = await sendRequestJson<JobsResponse>(
-    `/actions/runs/${runId}/jobs`,
+export async function getJobs(owner: string, repo: string, run_id: number) {
+  const response = await octokit.rest.actions.listJobsForWorkflowRun({
     owner,
-    repo
-  );
+    repo,
+    run_id,
+  });
 
-  return response.jobs;
+  return response.data.jobs;
 }

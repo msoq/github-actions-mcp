@@ -13,14 +13,10 @@ export const getLatestFailedRunLogs = [
   },
   async (args: { owner: string; repo: string }) => {
     try {
-      const latestFailedRun = await getRun(
-        args.owner,
-        args.repo,
-        '?status=completed&conclusion=failure&per_page=1'
-      );
-      const jobs = await getJobs(latestFailedRun.id, args.owner, args.repo);
+      const latestFailedRun = await getRun(args.owner, args.repo);
+      const jobs = await getJobs(args.owner, args.repo, latestFailedRun.id);
       const latestFailedJob = getLatestFailedJob(jobs);
-      const logs = await getJobLogs(latestFailedJob.id, args.owner, args.repo);
+      const logs = await getJobLogs(args.owner, args.repo, latestFailedJob.id);
       const errors = getErrorsFromLogs(logs);
 
       return { content: [{ type: 'text' as const, text: errors }] };

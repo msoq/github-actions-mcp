@@ -1,22 +1,17 @@
-import { sendRequest } from './send-request.js';
+import { octokit } from './client.js';
 
-export async function getJobLogs(jobId: number, owner: string, repo: string) {
-  let response = await sendRequest(`/actions/jobs/${jobId}/logs`, owner, repo);
+export async function getJobLogs(owner: string, repo: string, job_id: number) {
+  const response = await octokit.rest.actions.downloadJobLogsForWorkflowRun({
+    owner,
+    repo,
+    job_id,
+  });
 
-  if (response.status === 302) {
-    // GitHub returns a redirect to the actual log file
-    const logUrl = response.headers.get('Location');
+  if (response.url) {
+    const logs = await fetch(response.url);
 
-    if (logUrl) {
-      response = await fetch(logUrl);
-    }
+    return await logs.text();
   }
 
-  const logs = await response.text();
-
-  if (!logs) {
-    throw new Error('No logs found');
-  }
-
-  return logs;
+  throw new Error('No logs found');
 }
