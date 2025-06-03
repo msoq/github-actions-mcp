@@ -1,13 +1,15 @@
 {
   "name": "github-actions-mcp",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "github actions mcp server",
   "main": "dist/main.js",
   "bin": {
     "github-actions-mcp": "dist/main.js"
   },
   "type": "module",
-  "files": ["dist/"],
+  "files": [
+    "dist/"
+  ],
   "scripts": {
     "build": "rimraf dist && tsc",
     "start": "node --env-file=.env dist/main.js",
@@ -16,7 +18,12 @@
     "format": "biome format --write .",
     "release": "release-it"
   },
-  "keywords": ["github", "actions", "workflow", "mcp"],
+  "keywords": [
+    "github",
+    "actions",
+    "workflow",
+    "mcp"
+  ],
   "author": "Mikalai Sokarau",
   "license": "MIT",
   "repository": {
