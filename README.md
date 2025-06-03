@@ -22,3 +22,7 @@ A Model Context Protocol (MCP) server that provides tools for analyzing GitHub A
 
 `get_latest_failed_run_logs`
 - Retrieves the latest failed workflow run and extracts error messages from its logs.
+
+## License
+
+This MCP server is licensed under the MIT License.
